@@ -1,0 +1,29 @@
+
+
+
+server:
+    port: 8080
+
+spring:
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    jwk-set-uri: http://localhost:8081/sso-auth-server/.well-known/jwks.json
+    datasource:
+        url: jdbc:mysql://localhost:3306/liberary-manager?createDatabaseIfNotExist=true&useSSL=false&useUnicode=true&characterEncoding=utf8
+        username: root
+        password:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+        hibernate:
+            ddl-auto: create
+        show-sql: true
+
+hclorg:
+    app:
+        jwtSecret: HCLJWTSigningwithsecretkey
+        expiration: 360000
+rsa:
+    private-key: classpath:cert/private.pem
+    public-key: classpath:cert/public.pem

@@ -4,6 +4,7 @@ package com.hcl.liberaryManager.util;
 import com.hcl.liberaryManager.entity.User;
 import com.nimbusds.jwt.JWTClaimsSet;
 import io.jsonwebtoken.*;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +22,7 @@ import java.util.Date;
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 public class JwtUtils {
     @Value("${hclorg.app.jwtSecret}")
     private String SECRET_KEY;
@@ -28,11 +30,11 @@ public class JwtUtils {
     @Value("${hclorg.app.expiration}")
     private int EXPIRATIONMS;
 
-    @Autowired
-    private  JwtEncoder encoder ;
 
-    @Autowired
-    private JwtDecoder decoder ;
+    private final  JwtEncoder encoder ;
+
+
+    private final JwtDecoder decoder ;
 
     public boolean validate(String token){
         try{
